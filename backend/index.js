@@ -18,17 +18,6 @@ mongoose.connect(process.env.DB_URI, {useNewUrlParser:true, useUnifiedTopology:t
     console.log(err);
 });
 
-/*
-if (process.env.NODE_ENV === 'production') {
-    // Serve any static files
-    app.use(express.static(path.join(__dirname, 'frontend/build')));
-
-    // Handle React routing, return all requests to React app
-    app.get('*', function(req, res) {
-        res.sendFile(path.join(__dirname, 'frontend/build', routesHandler));
-    });
-}
-*/
 
 const PORT = process.env.PORT || 4000; // backend routing port
 app.listen(PORT, () => {

@@ -1,33 +1,25 @@
 //import logo from './logo.svg';
 import './App.css';
-import Blood from './components/Blood';
-import Bmi from './components/Bmi';
-import Exercise from './components/Exercise';
-import Height from './components/Height';
-import Home from './components/Home';
-import Kcal from './components/Kcal';
-import Sleep from './components/Sleep';
-import Temp from './components/Temp';
-import Water from './components/Water';
-import Weight from './components/Weight';
+import EditForm from './components/EditForm.jsx';
+import Form from './components/Form';
+import Header from './components/Header.jsx';
+import Home from './components/Home/Home';
+import SignIn from './components/SignIn.jsx';
+import SignUp from './components/SignUp.jsx';
+
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 const App = () => {
   return (
     <Router>
-      <Header />
-      <div className="App">
+       <Header />
+      <div class="App">
           <Switch>
             <Route path="/" exact component={Home} />
-            <Route path="/blood" exact component={Blood} />
-            <Route path="/bmi" exact component={Bmi} /> 
-            <Route path="/exercise" exact component={Exercise} />
-            <Route path="/height" exact component={Height} />
-            <Route path="/kcal" exact component={Kcal} />
-            <Route path="/sleep" exact component={Sleep} />
-            <Route path="/temp" exact component={Temp} />
-            <Route path="/water" exact component={Water} />
-            <Route path="/weight" exact component={Weight} />
+            <Route path="/form" exact component={Form} />
+            <Route path="/edit/:id" component={EditForm} />
+            <Route path="/create" component={SignIn} />
+            <Route path="/user" component={SignUp} />
           </Switch>
       </div>
     </Router>
