@@ -13,7 +13,7 @@ const Form = () => {
         training: '',
         height: '',
         weight: '',
-        BMI: '',
+        bmi: '',
         kcal: '',
         data: '',
     });
@@ -43,13 +43,15 @@ const Form = () => {
            temp:health_info.temp,
            water:health_info.water,
            weight:health_info.weight,
-           BMI:health_info.BMI,
+           bmi:health_info.bmi,
            kcal:health_info.kcal,
            date:health_info.date,
          }
 
         console.log(newInfo)
-         axios.post('http://localhost:4000/add', newInfo)
+         axios.post('http://localhost:4000/add', newInfo);
+
+      
     }
 
     return(
@@ -103,7 +105,7 @@ const Form = () => {
                     </div>
                     <div className="input-group mb-3">
                     <span className="input-group-text">BMI</span>
-                        <input type="text" className="form-control" id="BMI" name="BMI" value={health_info.BMI} onChange={handleChange}/>
+                        <input type="text" className="form-control" id="bmi" name="bmi" value={health_info.bmi} onChange={handleChange}/>
                     </div>
                     <div className="input-group mb-3">
                     <span className="input-group-text">Calories burned</span>

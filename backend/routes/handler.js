@@ -16,18 +16,18 @@ router.get('/form', async(req, res) => {
 });
 });
   
-  router.post('/add', async(req, res) => {
-    const blood = Number(req.body.blood);
-    const exercise = Number(req.body.exercise);
+  router.post('/add', async (req, res) => {
+    const blood = req.body.blood;
+    const exercise = req.body.exercise;
     const training =req.body.training;
-    const height = Number(req.body.height);
-    const sleep = Number(req.body.sleep);
-    const temp = Number(req.body.temp);
-    const water = Number(req.body.water);
-    const weight = Number(req.body.weight);
-    const BMI = Number(req.body.bmi);
-    const kcal = Number(req.body.kcal);
-    const date = Date.parse(req.body.date);
+    const height = req.body.height;
+    const sleep = req.body.sleep;
+    const temp = req.body.temp;
+    const water = req.body.water;
+    const weight = req.body.weight;
+    const bmi = req.body.bmi;
+    const kcal =req.body.kcal;
+    const date = req.body.date;
   
     const newFormHealth = new Schemas.FormHealth({
     blood,
@@ -38,13 +38,13 @@ router.get('/form', async(req, res) => {
     temp,
     water,
     weight,
-    BMI,
+    bmi,
     kcal,
     date
     });
   
     try {
-      await newFormHealth.save( (err, newFormResults) => {
+      await newFormHealth.save( (err, newInfoResults) => {
           if (err) res.end('Error Saving.');
           res.redirect('/form');
           res.end();
