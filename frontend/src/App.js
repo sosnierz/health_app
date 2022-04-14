@@ -2,7 +2,7 @@ import React from 'react';
 import { Route,  HashRouter as Router, Switch } from 'react-router-dom';
 import './App.css';
 import EditForm from './components/EditForm.jsx';
-import Form from './components/Form';
+import CreateForm from './components/CreateForm';
 import Header from './components/Header.jsx';
 import Home from './components/Home/Home';
 import SignIn from './components/SignIn.jsx';
@@ -17,7 +17,7 @@ const App = () => {
       <div className="App">
           <Switch>
             <Route path="/" exact component={Home} />
-            <Route path="/form" exact component={Form} />
+            <Route path="/form" exact component={CreateForm} />
             <Route path="/edit/:id" component={EditForm} />
             <Route path="/create" component={SignIn} />
             <Route path="/user" component={SignUp} />

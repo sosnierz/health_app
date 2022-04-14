@@ -2,7 +2,9 @@ import React, {useState} from 'react';
 import axios from 'axios';
 
 
-const Form = () => {
+
+
+const CreateForm = () => {
 
     const [health_info, setHealth_info] = useState({
         blood: '',
@@ -18,9 +20,6 @@ const Form = () => {
         data: '',
     });
 
-     
-
-    
     const handleChange = (e) => {
         const {name, value}= e.target;
         
@@ -47,16 +46,32 @@ const Form = () => {
            kcal:health_info.kcal,
            date:health_info.date,
          }
-
-        console.log(newInfo)
-         axios.post('http://localhost:4000/add', newInfo);
-
-      
+         axios.post('http://localhost:4000/add', newInfo)
+         .then((response) => {
+            console.log(response.status);
+            setHealth_info({
+            blood: '',
+            temp: '',
+            sleep: '',
+            water: '',
+            exercise: '',
+            training: '',
+            height: '',
+            weight: '',
+            bmi: '',
+            kcal: '',
+            data: '',});
+        })
+        .catch(error => {
+            setErrors(error.response.data.errors);
+        });
     }
 
+    
+  
     return(
         <section>
-            <div className="container-fluid">
+           <div className="container-fluid">
                 <h2 className="mt-5">My health information</h2>
                 <form className="row g-3">
                     <div className="input-group mb-3">
@@ -120,19 +135,9 @@ const Form = () => {
                         <button type="submit" className="btn btn-primary" onClick={handleClick}>Save</button>
                     </div>
                 </form>
-
-                {/* {
-                health_info.map(item => (
-                    <div className="row padding">
-                        <div className="alert alert-info rounded-pill" role="alert">
-                            <i className="fa fa-user mr-2"></i> <i> {item.height}{item.water}{item.sleep}</i>
-                        </div>
-                    </div>       
-                ))
-                } */}
             </div>
         </section>
     );
 }
 
-export default Form;
+export default CreateForm;
