@@ -1,4 +1,5 @@
-//import logo from './logo.svg';
+import React from 'react';
+import { Route,  HashRouter as Router, Switch } from 'react-router-dom';
 import './App.css';
 import EditForm from './components/EditForm.jsx';
 import Form from './components/Form';
@@ -7,13 +8,13 @@ import Home from './components/Home/Home';
 import SignIn from './components/SignIn.jsx';
 import SignUp from './components/SignUp.jsx';
 
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+
 
 const App = () => {
   return (
     <Router>
        <Header />
-      <div class="App">
+      <div className="App">
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/form" exact component={Form} />

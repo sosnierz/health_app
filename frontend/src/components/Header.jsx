@@ -7,12 +7,11 @@ const Header = () => {
   
     return ( 
         <header>
-           <nav className="navbar navbar-light bg-light">
-               <div className="container-fluid">
-                        <NavLink to='/'><h1>Health App</h1></NavLink> 
-               </div>
-               <button type="button" class="btn btn-outline-light"><NavLink to='/form'>Sign in</NavLink> </button>   
-               <button type="button" class="btn btn-outline-light"><NavLink to='/form'>Add Info Health</NavLink> </button>   
+           <nav className="navbar bg-dark container">
+              
+           <h1><NavLink to='/'>Health App</NavLink></h1>
+            <button type="button" className="btn btn-outline-light"><NavLink to='/user'>Sign in</NavLink> </button>   
+            <button type="button" className="btn btn-outline-light"><NavLink to='/form'>Add Info Health</NavLink> </button>   
             </nav>
         </header>
      );

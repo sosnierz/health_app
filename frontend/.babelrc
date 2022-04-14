@@ -1,0 +1,8 @@
+{
+      "presets": ["@babel/preset-react"],
+      "plugins": [
+        "react-html-attrs",
+        "@babel/plugin-proposal-optional-chaining"
+      ]
+
+}

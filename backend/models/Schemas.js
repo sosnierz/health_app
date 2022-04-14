@@ -1,13 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-// users 
-const userSchema = new Schema({
-    username: {type:String, required:true, unique: true, trim: true, minlength: 3},
-    fullname: {type:String, required:true},
-    password: {type:String require:true},
-    entryDate: {type:Date, default:Date.now}
-});
+
 
 // health form
 const formSchema = new Schema({
@@ -21,13 +15,13 @@ const formSchema = new Schema({
     temp: {type:Number, required:0},
     water: {type:Number, required:0},
     weight: {type:Number, required:0},
-    entryDate: {type:Date, default:Date.now}  
+    date: {type:String, required:true}  
 });
 
 
 
-const Users = mongoose.model('users', userSchema);
-const FormHealth = mongoose.model('FormHealth', formSchema);
-const mySchemas = {'Users':Users, 'FormHealth':FormHealth};
+
+const FormHealth = mongoose.model('health_info', formSchema, 'health_info');
+const mySchemas = {'FormHealth':FormHealth};
 
 module.exports = mySchemas;

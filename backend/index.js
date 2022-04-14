@@ -1,10 +1,12 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors')
 const routesHandler = require('./routes/handler.js');
 const mongoose = require('mongoose');
 require('dotenv/config');
 
 const app = express();
+app.use(cors())
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 app.use('/', routesHandler);
@@ -19,7 +21,7 @@ mongoose.connect(process.env.DB_URI, {useNewUrlParser:true, useUnifiedTopology:t
 });
 
 
-const PORT = process.env.PORT || 4000; // backend routing port
+const PORT = process.env.PORT || 5000; // backend routing port
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}.`);
 });
