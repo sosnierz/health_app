@@ -28,6 +28,7 @@ router.get('/form', async(req, res) => {
     const bmi = req.body.bmi;
     const kcal =req.body.kcal;
     const date = req.body.date;
+    const key = req.body.key;
   
     const newFormHealth = new Schemas.FormHealth({
     blood,
@@ -40,7 +41,8 @@ router.get('/form', async(req, res) => {
     weight,
     bmi,
     kcal,
-    date
+    date,
+    key
     });
   
     try {
@@ -56,41 +58,20 @@ router.get('/form', async(req, res) => {
   }
 });
   
-  // router.get('/:id', async(req, res) => {
-  //   const health = Schemas.FormHealth;
-  //   await health.findById(req.params.id)
-  //     .then(health_info => res.json(health_info), res.redirect('/form'))
-  //     .catch(err => res.status(400).json('Error: ' + err), res.redirect('/form'));
-  // });
+  router.get('/:id', async(req, res) => {
+    const health = Schemas.FormHealth;
+    await health.findById(req.params.id)
+      .then(health_info => res.json(health_info), res.redirect('/form'))
+      .catch(err => res.status(400).json('Error: ' + err), res.redirect('/form'));
+  });
   
-  // router.delete('/:id', async (req, res) => {
-  //  await FormHealth.findByIdAndDelete(req.params.id)
-  //     .then(() => res.json('Data deleted.'), res.redirect('/form'))
-  //     .catch(err => res.status(400).json('Error: ' + err), res.redirect('/form'));
-  // });
+  router.delete('/:id', async (req, res) => {
+   await FormHealth.findByIdAndDelete(req.params.id)
+      .then(() => res.json('Data deleted.'), res.redirect('/form'))
+      .catch(err => res.status(400).json('Error: ' + err), res.redirect('/form'));
+  });
   
-  // router.post('/update/:id', async(req, res) => {
-  //   await FormHealth.findById(req.params.id)
-  //     .then(health_info => {
-  //       health_info.blood = Number(req.body.blood);
-  //       health_info.exercise = Number(req.body.exercise);
-  //       health_info.training = req.body.training;
-  //       health_info.height = Number(req.body.height);
-  //       health_info.sleep = Number(req.body.sleep);
-  //       health_info.temp = Number(req.body.temp);
-  //       health_info.water = Number(req.body.water);
-  //       health_info.weight = Number(req.body.weight);
-  //       health_info.BMI = Number(req.body.bmi);
-  //       health_info.kcal = Number(req.body.kcal);
-  //       health_info.date = Date.parse(req.body.date);
   
-  //      health_info.save()
-  //         .then(() =>  res.redirect('/form'),
-  //        )
-  //         .catch(err => res.status(400).json('Error: ' + err), res.redirect('/form'));
-  //     })
-  //     .catch(err => res.status(400).json('Error: ' + err), res.redirect('/form'));
-  // });
   
 
 module.exports = router;

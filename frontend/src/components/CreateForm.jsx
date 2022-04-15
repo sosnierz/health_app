@@ -1,5 +1,7 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect } from 'react';
 import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashCan } from '@fortawesome/free-solid-svg-icons'
 
 
 
@@ -18,8 +20,11 @@ const CreateForm = () => {
         bmi: '',
         kcal: '',
         data: '',
+       
     });
-
+    const [health_data, setHealth_data] = useState([])
+    
+    
     const handleChange = (e) => {
         const {name, value}= e.target;
         
@@ -45,6 +50,7 @@ const CreateForm = () => {
            bmi:health_info.bmi,
            kcal:health_info.kcal,
            date:health_info.date,
+           
          }
          axios.post('http://localhost:4000/add', newInfo)
          .then((response) => {
@@ -67,7 +73,15 @@ const CreateForm = () => {
         });
     }
 
-    
+    useEffect( () => {
+        fetchData();
+    }, []);
+
+    const fetchData = async () => {
+        const data = await fetch('/form');
+        const health_data = await data.json();
+        setHealth_data(health_data);
+    };
   
     return(
         <section>
@@ -83,10 +97,10 @@ const CreateForm = () => {
                         <input type="text" className="form-control" id="temp" name="temp" value={health_info.temp} onChange={handleChange}/>
                         <span className="input-group-text"> &deg; C</span>
                     </div>
-                    <div class="input-group mb-3">
+                    <div className="input-group mb-3">
                     <span className="input-group-text">Length of sleep</span>
                         <input type="text" className="form-control" id="sleep" name="sleep" value={health_info.sleep} onChange={handleChange}/>
-                        <span class="input-group-text"> h </span>
+                        <span className="input-group-text"> h </span>
                     </div>
                     <div className="input-group mb-3">
                     <span className="input-group-text">Water</span>
@@ -111,7 +125,7 @@ const CreateForm = () => {
                     <div className="input-group mb-3">
                     <span className="input-group-text">Height</span>
                         <input type="text" className="form-control" id="height" name="height" value={health_info.height} onChange={handleChange}/>
-                        <span class="input-group-text"> cm </span>
+                        <span className="input-group-text"> cm </span>
                     </div>
                     <div className="input-group mb-3">
                     <span className="input-group-text">Weight</span>
@@ -135,6 +149,44 @@ const CreateForm = () => {
                         <button type="submit" className="btn btn-primary" onClick={handleClick}>Save</button>
                     </div>
                 </form>
+            </div>
+            <div>
+                <h3>Health Data</h3>
+                <table className="table table-success table-striped">
+                    <thead>
+                        <tr>
+                        <th scope="col">Date</th>
+                        <th scope="col">Pulse</th>
+                        <th scope="col">Tempeture</th>
+                        <th scope="col">Height</th>
+                        <th scope="col">Weight</th>
+                        <th scope="col">BMI</th>
+                        <th scope="col">Workout time</th>
+                        <th scope="col">Training type</th>
+                        <th scope="col">Kcal</th>
+                        <th scope="col">Delete</th>
+                        
+                        </tr>
+                    </thead>
+                    <tbody>
+                      {health_data.map(data =>(
+                        <tr key={data.key}>
+                        <th scope="row">{data.date}</th>
+                        <td>{data.blood}</td>
+                        <td>{data.temp}</td>
+                        <td>{data.height}</td>
+                        <td>{data.weight}</td>
+                        <td>{data.bmi}</td>
+                        <td>{data.exercise}</td>
+                        <td>{data.training}</td>
+                        <td>{data.kcal}</td>
+                        <td><button><FontAwesomeIcon icon={faTrashCan} /></button></td>
+                        </tr>
+                        )
+                      )}  
+                        
+                    </tbody>
+                </table>
             </div>
         </section>
     );

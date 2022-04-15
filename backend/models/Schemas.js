@@ -15,7 +15,8 @@ const formSchema = new Schema({
     temp: {type:Number},
     water: {type:Number},
     weight: {type:Number},
-    date: {type:String, required:true}  
+    date: {type:String, required:true},
+    key: {type:String, default: Date.now(), required:true}  
 });
 
 
