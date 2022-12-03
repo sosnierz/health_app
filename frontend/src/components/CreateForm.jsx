@@ -11,15 +11,7 @@ const CreateForm = () => {
     const [health_info, setHealth_info] = useState({
         blood: '',
         temp: '',
-        sleep: '',
-        water: '',
-        exercise: '',
-        training: '',
-        height: '',
-        weight: '',
-        bmi: '',
-        kcal: '',
-        data: '',
+        data: ''
        
     });
     const [health_data, setHealth_data] = useState([])

@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { NavLink } from 'react-router-dom'
 
 import './home.css'
 
@@ -28,9 +28,14 @@ const Home = () => {
               <h2>tetno</h2>
            
             </div>
+           
             <div className="pic2">
-            <h2>36 &deg; temp</h2>
-             </div>  
+            <NavLink to='/form'>
+            <h2>ilość wody</h2>
+            </NavLink>
+            </div>  
+            
+
             <div className="pic1">
            <h2>wzrost</h2>
                 
